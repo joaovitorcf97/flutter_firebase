@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/firebase_messaging/custom_firebase_messaging.dart';
+import 'package:flutter_firebase/remote_config/custom_remote_config.dart';
 
 import 'pages/home_page.dart';
 
@@ -10,9 +11,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
-  await CustomFirebaseMessaging().inicialize();
 
+  await CustomFirebaseMessaging().inicialize();
   await CustomFirebaseMessaging().getTokenFirebase();
+
+  await CustomRemoteConfig().initialize();
 
   runApp(const MyApp());
 }
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       navigatorKey: navigatorKey,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       initialRoute: '/home',
       routes: {
